@@ -21,3 +21,4 @@ def upload_blob_from_memory(bucket_name, contents, destination_blob_name):
     print(
         f"{destination_blob_name} with contents {contents} uploaded to {bucket_name}."
     )
+

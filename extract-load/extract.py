@@ -1,10 +1,10 @@
-from urllib import request
+from brasileirao-project.extract-load import gcp-resources
 from dotenv import load_dotenv, find_dotenv
 import os
 import requests
 import json
 
-from google-stg import *
+from gcp
 
 
 def request_api(url: str, header: dict):
