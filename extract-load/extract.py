@@ -1,10 +1,31 @@
-from brasileirao-project.extract-load import gcp-resources
-from dotenv import load_dotenv, find_dotenv
 import os
 import requests
-import json
+from dotenv import load_dotenv, find_dotenv
 
-from gcp
+from google.cloud import storage
+
+
+def upload_blob_from_memory(bucket_name, contents, destination_blob_name):
+    """Uploads a file to the bucket."""
+
+    # The ID of your GCS bucket
+    # bucket_name = "your-bucket-name"
+
+    # The contents to upload to the file
+    # contents = "these are my contents"
+
+    # The ID of your GCS object
+    # destination_blob_name = "storage-object-name"
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_string(contents)
+
+    print(
+        f"{destination_blob_name} with contents {contents} uploaded to {bucket_name}."
+    )
 
 
 def request_api(url: str, header: dict):
@@ -22,7 +43,7 @@ def request_api(url: str, header: dict):
 
 if __name__ == '__main__':
     load_dotenv(find_dotenv())
-
+    
     header = {
         'X-RapidAPI-Key': os.getenv('RAPID_API_KEY'),
         'X-RapidAPI-Host': os.getenv('RAPID_API_HOST')
@@ -33,5 +54,10 @@ if __name__ == '__main__':
     }
 
     leagues = request_api('https://api-football-v1.p.rapidapi.com/v3/leagues', header)
-    leagues
+    
+    # Send to Storage
+    bucket_name = os.getenv('GCP_BUCKET_NAME')
+    destination_name = 'test.json'
+
+    upload_blob_from_memory(bucket_name, leagues, destination_name)
 
