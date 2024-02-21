@@ -1,0 +1,14 @@
+[0m22:50:33.469106 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021C3005F6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021C32F0A2C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021C32F0AF80>]}
+
+
+============================== 22:50:33.472105 | de2e4a22-5a66-4e12-a247-6e836ece70cd ==============================
+[0m22:50:33.472105 [info ] [MainThread]: Running with dbt=1.7.4
+[0m22:50:33.473105 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:50:33.474105 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path D:\Repositorios\brasileirao-project\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m22:50:33.475105 [debug] [MainThread]: Command `dbt run` failed at 22:50:33.475105 after 0.05 seconds
+[0m22:50:33.475105 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021C3005F6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021C32F0BF40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021C32F0BAF0>]}
+[0m22:50:33.476105 [debug] [MainThread]: Flushing usage events

@@ -3,3 +3,4 @@ env/
 gcp_storage_credentials.json
 big_query_credentials.json
 __pycache__/
+.vscode/

@@ -1,34 +1,33 @@
 from google.cloud import bigquery
-from google.api_core.exceptions import BadRequest, ClientError
+from google.api_core import exceptions
 
 
-# Construct a BigQuery client object.
-client = bigquery.Client('gcp-brasileirao-gcp')
+def create_table_from_uri(dataset, table, uri, project='gcp-brasileirao', format='JSON'):
+    client = bigquery.Client(project)
+    
+    try:
+        client.dataset(dataset)
+        bq_table = client.create_table(f'{project}.{dataset}.{table}', exists_ok=True)
+        job_config = bigquery.LoadJobConfig()
 
-bq_dataset = client.dataset('brasileirao')
-bq_table = bq_dataset.table('leagues2')
+        if format.upper() == 'JSON':
+            job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
+            job_config.autodetect = True
+            job_config.
+        
+        else:
+            print('Sorry, come later')
+        
 
+        load_job = client.load_table_from_uri(
+            uri,
+            bq_table,
+            location="US",  # Must match the destination dataset location.
+            job_config=job_config
+            ) 
+        
+        return load_job.result()
 
-job_config = bigquery.LoadJobConfig()
-
-job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
-job_config.autodetect = True
-
-
-uri = "gs://stg-brasileirao-raw/leagues.json"
-
-load_job = client.load_table_from_uri(
-    uri,
-    bq_table,
-    location="US",  # Must match the destination dataset location.
-    job_config=job_config
-)  # Make an API request.
-
-try:
-    load_job.result()  # Waits for the job to complete.
-except BadRequest as ex:
-    for err in ex.errors:
-        print(err)
-    raise
-
+    except Exception as e:
+        return e
 

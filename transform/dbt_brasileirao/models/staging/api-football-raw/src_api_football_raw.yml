@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: api-football-raw
+    description: API with football data
+    project: gcp-brasileirao
+    schema: api_football_raw
+    tables:
+      - name: leagues
+        description: Leagues table
